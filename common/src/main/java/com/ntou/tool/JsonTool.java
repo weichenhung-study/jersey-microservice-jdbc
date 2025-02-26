@@ -1,7 +1,6 @@
 package com.ntou.tool;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.log4j.Log4j2;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -24,9 +23,6 @@ public class JsonTool {
             log.error(Common.EXCEPTION, e);
             return null;
         }
-    }
-    public static JsonNode readTree(String str) throws JsonProcessingException {
-        return OM_Serial_Default.readTree(str);
     }
     public static <T> T convertValue(Object fromValue, TypeReference<T> toValueTypeRef) {
         return OM_Serial_Default.convertValue(fromValue, toValueTypeRef);

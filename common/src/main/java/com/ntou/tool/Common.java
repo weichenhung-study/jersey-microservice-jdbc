@@ -11,7 +11,7 @@ public class Common {
     public static final String VO = "VO:";
     public static final String SQL = "SQL:";
     public static final String RESULT = "RESULT:";
-    public static final String NODE_RESULT = "NODE_RESULT:";
+
 
     public static final String EXCEPTION = "EXCEPTION:";
     public static final String ARROW = ">>> ";
