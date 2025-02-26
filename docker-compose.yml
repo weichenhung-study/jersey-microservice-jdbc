@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+
+  jersey-microservice-jdbc-cuscredit:
+    build:
+      context: ./jersey-microservice-jdbc-cuscredit
+    image: jersey-microservice-jdbc-cuscredit-img
+    container_name: jersey-microservice-jdbc-cuscredit-api
+    ports:
+      - "8081:8080"
+    networks:
+      - mysqlnetwork
+
+  jersey-microservice-jdbc-billofmonth:
+    build:
+      context: ./jersey-microservice-jdbc-billofmonth
+    image: jersey-microservice-jdbc-billofmonth-img
+    container_name: jersey-microservice-jdbc-billofmonth-api
+    ports:
+      - "8082:8080"
+    networks:
+      - mysqlnetwork
+
+  jersey-microservice-jdbc-billrecord:
+    build:
+      context: ./jersey-microservice-jdbc-billrecord
+    image: jersey-microservice-jdbc-billrecord-img
+    container_name: jersey-microservice-jdbc-billrecord-api
+    ports:
+      - "8083:8080"
+    networks:
+      - mysqlnetwork
+
+networks:
+  mysqlnetwork:
+    external: true  # 使用外部已存在的網路
