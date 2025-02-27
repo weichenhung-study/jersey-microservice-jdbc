@@ -6,7 +6,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import javax.ws.rs.ApplicationPath;
 
 @Log4j2
-@ApplicationPath("/billrecord-db")
+@ApplicationPath("/billrecord")
 public class APIApplication extends ResourceConfig {
     public APIApplication() {
         packages("com.ntou");

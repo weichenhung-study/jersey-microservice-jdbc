@@ -40,7 +40,7 @@
     </dependencies>
 
     <build>
-        <finalName>jersey-microservice-jdbc-cuscredit</finalName>
+        <finalName>jersey-microservice-jdbc</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
