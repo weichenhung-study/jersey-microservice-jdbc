@@ -9,7 +9,7 @@
     <name>jersey-microservice-jdbc</name>
 
 	<modules>
-        <module>common</module>
+        <module>jersey-microservice-jdbc-common</module>
         <module>jersey-microservice-jdbc-cuscredit</module>
         <module>jersey-microservice-jdbc-billofmonth</module>
         <module>jersey-microservice-jdbc-billrecord</module>
