@@ -74,7 +74,7 @@ public class BillofmonthDAO extends ConnControl {
             log.info(Common.RESULT + result);
         } finally {
             closePS(pstmt);
-            closeConn(conn);
+            closeConn();
             log.info(Common.ARROW + "insertBill" + Common.END_B);
         }
         return result;
@@ -112,7 +112,7 @@ public class BillofmonthDAO extends ConnControl {
             log.info(Common.RESULT + out);
         } finally {
             closePS(pstmt);
-            closeConn(conn);
+            closeConn();
             log.info(Common.ARROW + "updatePayDate" + Common.END_B);
         }
         return out;
@@ -164,7 +164,7 @@ public class BillofmonthDAO extends ConnControl {
         } finally {
             closePS(pstmt);
             closeRS(rs);
-            closeConn(conn);
+            closeConn();
             log.info(Common.ARROW + "findBills" + Common.END_B);
         }
         return out;
