@@ -3,6 +3,7 @@ package com.ntou.db.api.insertcusdatebill;
 import com.ntou.db.billrecord.BillrecordSvc;
 import com.ntou.db.billrecord.BillrecordVO;
 import com.ntou.tool.Common;
+import com.ntou.tool.ExecutionTimer;
 import com.ntou.tool.DateTool;
 import com.ntou.tool.ResTool;
 import lombok.extern.log4j.Log4j2;
@@ -20,22 +21,30 @@ public class InsertCusDateBill {
         this.billrecordSvc = billrecordSvc;
     }
     public Response doAPI(InsertCusDateBillReq req) throws Exception {
-        log.info(Common.API_DIVIDER + Common.START_B + Common.API_DIVIDER);
+        ExecutionTimer.startStage(ExecutionTimer.ExecutionModule.APPLICATION.getValue());
+
+		log.info(Common.API_DIVIDER + Common.START_B + Common.API_DIVIDER);
         log.info(Common.REQ + req);
         InsertCusDateBillRes res = new InsertCusDateBillRes();
 
         if(!req.checkReq())
             ResTool.regularThrow(res, VALIDATION_ERROR.getCode(), VALIDATION_ERROR.getContent(), req.getErrMsg());
-
+		
+		ExecutionTimer.startStage(ExecutionTimer.ExecutionModule.DATABASE.getValue());
         int insertResult = billrecordSvc.insertCusDateBill(voBillrecordInsert(req));
-        if(insertResult !=1)
+        ExecutionTimer.endStage(ExecutionTimer.ExecutionModule.DATABASE.getValue());
+
+		if(insertResult !=1)
             ResTool.commonThrow(res, FAIL.getCode(), FAIL.getContent());
 
         ResTool.setRes(res, SUCCESS.getCode(), SUCCESS.getContent());
 
         log.info(Common.RES + res);
         log.info(Common.API_DIVIDER + Common.END_B + Common.API_DIVIDER);
-        return Response.status(Response.Status.OK).entity(res).build();
+        
+		ExecutionTimer.endStage(ExecutionTimer.ExecutionModule.APPLICATION.getValue());
+        ExecutionTimer.exportTimings(this.getClass().getSimpleName() + "_" + DateTool.getYYYYmmDDhhMMss() + ".txt");
+		return Response.status(Response.Status.OK).entity(res).build();
     }
     private BillrecordVO voBillrecordInsert(InsertCusDateBillReq req){
         BillrecordVO vo = new BillrecordVO();
